@@ -1,10 +1,10 @@
-  function handleSubmit(e) {
-    e.preventDefault()
-    const title = form.title.trim()
-    const body = form.body.trim()
-    if (title === '' || body === '') return
-
-    setNotes([...notes, { id: crypto.randomUUID(), title, body }])
-    setForm({ title: '', body: '' })
+  function handleDelete(id) {
+    setNotes(notes.filter((note) => note.id !== id))
   }
-          <form onSubmit={handleSubmit} className="grid gap-3"></form>
+                <button
+                type="button"
+                onClick={() => handleDelete(note.id)}
+                className="absolute top-4 right-5 cursor-pointer text-[26px] leading-none text-[#949494] hover:text-[#c18585]"
+              >
+                ×
+              </button>
