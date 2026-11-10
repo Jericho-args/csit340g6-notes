@@ -1,20 +1,10 @@
-  const [form, setForm] = useState({ title: '', body: '' })
+  function handleSubmit(e) {
+    e.preventDefault()
+    const title = form.title.trim()
+    const body = form.body.trim()
+    if (title === '' || body === '') return
 
-  function handleChange(e) {
-    const { name, value } = e.target
-    setForm({ ...form, [name]: value })
+    setNotes([...notes, { id: crypto.randomUUID(), title, body }])
+    setForm({ title: '', body: '' })
   }
-            <input
-            name="title"
-            value={form.title}
-            onChange={handleChange}
-            placeholder="Title"
-            className="h-[52px] w-full border border-[#e6e6e6] px-4 text-lg outline-none placeholder:text-black/40 placeholder:italic focus:border-[#cf7d7d]"
-          />
-          <textarea
-            name="body"
-            value={form.body}
-            onChange={handleChange}
-            placeholder="Write your note"
-            className="h-[120px] w-full resize-none py-3 border border-[#e6e6e6] px-4 text-lg outline-none placeholder:text-black/40 placeholder:italic focus:border-[#cf7d7d]"
-          />
+          <form onSubmit={handleSubmit} className="grid gap-3"></form>
